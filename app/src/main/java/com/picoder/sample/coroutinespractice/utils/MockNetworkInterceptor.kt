@@ -3,6 +3,12 @@ package com.picoder.sample.coroutinespractice.utils
 import com.google.gson.Gson
 import okhttp3.*
 
+/**
+ * todo More detail how okhttp Interceptor work https://square.github.io/okhttp/interceptors/
+ * there are two type of interceptors:
+ * - Application interceptor
+ * - Network interceptor
+ */
 class MockNetworkInterceptor : Interceptor {
 
     private val mockResponses = mutableListOf<MockResponse>()
@@ -18,7 +24,7 @@ class MockNetworkInterceptor : Interceptor {
         return if (mockResponse.status < 400) {
             createSuccessResponse(mockResponse, request)
         } else {
-            createErrorResponse(request)
+            createErrorResponse(mockResponse, request)
         }
     }
 
@@ -38,9 +44,9 @@ class MockNetworkInterceptor : Interceptor {
         Thread.sleep(mockResponse.delayInMs)
     }
 
-    private fun createErrorResponse(request: Request): Response {
+    private fun createErrorResponse(mockResponse: MockResponse, request: Request): Response {
         return Response.Builder()
-            .code(500)
+            .code(mockResponse.status)
             .request(request)
             .protocol(Protocol.HTTP_1_1)
             .message("Internal Server Error")
