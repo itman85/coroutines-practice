@@ -46,6 +46,41 @@
         <activity
             android:name=".usecases.coroutines.usecase3.PerformNetworkRequestsConcurrentlyActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase4.VariableAmountOfNetworkRequestsActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase5.NetworkRequestWithTimeoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".usecases.coroutines.usecase6.RetryNetworkRequestActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase7.callbacks.TimeoutAndRetryCallbackActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase7.rx.TimeoutAndRetryRxActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase7.TimeoutAndRetryActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase8.RoomAndCoroutinesActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase9.DebuggingCoroutinesActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase10.CalculationInBackgroundActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

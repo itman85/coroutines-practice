@@ -5,6 +5,7 @@ import com.picoder.sample.coroutinespractice.base.BaseViewModel
 import com.picoder.sample.coroutinespractice.mock.MockApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 
@@ -46,35 +47,30 @@ class PerformNetworkRequestsConcurrentlyViewModel(
                 uiState.value = UiState.Error("Network Request failed")
             }
         }
+    }
 
-        /*
-
-        Alternatively:
-
+    fun performNetworkRequestsConcurrently1() {
+        uiState.value = UiState.Loading
         viewModelScope.launch {
             try {
-                // we need to wrap this code with a coroutineScope block
-                // otherwise the app would crash on unsuccessful network requests
-                coroutineScope {
-                    val oreoFeaturesDeferred = async { mockApi.getAndroidVersionFeatures(27) }
-                    val pieFeaturesDeferred = async { mockApi.getAndroidVersionFeatures(28) }
-                    val android10FeaturesDeferred = async { mockApi.getAndroidVersionFeatures(29) }
+                val oreoFeaturesDeferred = async { mockApi.getAndroidVersionFeatures(27) }
+                val pieFeaturesDeferred = async { mockApi.getAndroidVersionFeatures(28) }
+                val android10FeaturesDeferred = async { mockApi.getAndroidVersionFeatures(29) }
 
-                    val oreoFeatures = oreoFeaturesDeferred.await()
-                    val pieFeatures = pieFeaturesDeferred.await()
-                    val android10Features = android10FeaturesDeferred.await()
+                val oreoFeatures = oreoFeaturesDeferred.await()
+                val pieFeatures = pieFeaturesDeferred.await()
+                val android10Features = android10FeaturesDeferred.await()
 
-                    val versionFeatures = listOf(oreoFeatures, pieFeatures, android10Features)
+                val versionFeatures = listOf(oreoFeatures, pieFeatures, android10Features)
 
-                    // other alternative: (but slightly different behavior when a deferred fails, see docs)
-                    // val versionFeatures = awaitAll(oreoFeaturesDeferred, pieFeaturesDeferred, android10FeaturesDeferred)
+                // other alternative: (but slightly different behavior when a deferred fails, see docs)
+                // val versionFeatures = awaitAll(oreoFeaturesDeferred, pieFeaturesDeferred, android10FeaturesDeferred)
 
-                    uiState.value = UiState.Success(versionFeatures)
-                }
+                uiState.value = UiState.Success(versionFeatures)
 
             } catch (exception: Exception) {
                 uiState.value = UiState.Error("Network Request failed")
             }
-        }*/
+        }
     }
 }
