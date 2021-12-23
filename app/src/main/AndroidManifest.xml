@@ -81,6 +81,10 @@
         <activity
             android:name=".usecases.coroutines.usecase10.CalculationInBackgroundActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase12.CalculationInSeveralCoroutinesActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
