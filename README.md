@@ -1,5 +1,9 @@
-# Coroutines Practice
+# Coroutines Characteristics
 - Coroutine must have Coroutine Scope to run, such as GlobalScope, ViewModelScope
+- Coroutine started in the same scope from a hierarchy
+- A parent job (coroutine) won't complete until all of its children have completed
+- Cancelling a parent will cancel all children, but cancelling a child won't cancel the parent or siblings
+- If a child coroutine fails, the exception is propagated upwards and depending on the job type, either all siblings are cancelled or not
 - Coroutine always go with Coroutine Context which define which context (Main thread or other thread) coroutine will run under
 - Coroutine can include many coroutines
 - Coroutine can include many suspend functions
@@ -13,8 +17,15 @@
 - withContext() create suspend function with context (main or worker thread) will run under; return value
 - suspend function run in main coroutine context will be a blocking code in Main thread
 
+## Coroutine Scope (pre-defined)
+- GlobalScope
+- ViewModelScope
+- LifecycleScope
+
 ### các tình huống cần tìm hiểu
 1. sự khác nhau giữa viewModelScope.launch(context = Dispatchers.Main) {} và viewModelScope.launch {} tại sao 2 bên block UI theo
 các mức độ khác nhau; dùng code usecase 10 làm ví dụ
 2. tại sao cùng là suspend function nhưng retrofit (cho timeout 30s luôn) hay room đều ko block UI khi run trong main context
 nhưng heavy operation lại block ui, lấy code ví dụ usecase 10, 1
+3. Ask team: domain layer sai coroutine dc ko? scope dau the pass xuong domain -> data dc dung ko? vi domain la no android framework ma?
+vay neu sai clean thi domain,data chi sai suspend function thoi nhi?
