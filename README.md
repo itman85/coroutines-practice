@@ -29,3 +29,5 @@ các mức độ khác nhau; dùng code usecase 10 làm ví dụ
 nhưng heavy operation lại block ui, lấy code ví dụ usecase 10, 1
 3. Ask team: domain layer sai coroutine dc ko? scope dau the pass xuong domain -> data dc dung ko? vi domain la no android framework ma?
 vay neu sai clean thi domain,data chi sai suspend function thoi nhi?
+4. playground / exceptionhandling / 4_launch_and_async de moi nguoi thao luan vi sao async ko throw exception ma launch lai throw exception
+5. playground/ exceptionhandling / 5_exception_handling_specifics_coroutineScope : coroutineScope duoc dung the nao? trong truong hop gi? tao sai this trong day la instance cua coroutine scope roi?
