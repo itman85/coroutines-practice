@@ -83,7 +83,15 @@
             android:exported="true" />
 
         <activity
+            android:name=".usecases.coroutines.usecase11.CooperativeCancellationActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".usecases.coroutines.usecase12.CalculationInSeveralCoroutinesActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".usecases.coroutines.usecase13.ExceptionHandlingActivity"
             android:exported="true" />
     </application>
 

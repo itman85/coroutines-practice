@@ -80,7 +80,7 @@ class ExceptionHandlingActivity : BaseActivity() {
             )}"
         }
 
-        textViewResult.text = fromHtml(versionFeaturesString)
+        textViewResult.text = if(versionFeaturesString.isEmpty()) "" else fromHtml(versionFeaturesString)
     }
 
     private fun onError(uiState: UiState.Error) = with(binding) {

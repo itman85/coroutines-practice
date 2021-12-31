@@ -31,3 +31,5 @@ nhưng heavy operation lại block ui, lấy code ví dụ usecase 10, 1
 vay neu sai clean thi domain,data chi sai suspend function thoi nhi?
 4. playground / exceptionhandling / 4_launch_and_async de moi nguoi thao luan vi sao async ko throw exception ma launch lai throw exception
 5. playground/ exceptionhandling / 5_exception_handling_specifics_coroutineScope : coroutineScope duoc dung the nao? trong truong hop gi? tao sai this trong day la instance cua coroutine scope roi?
+6. trong usecase13 tai sao supervisorScope != viewModelScope.launch(SupervisorJob()) , with supervisorScope thi no ko cancel sibling coroutine neu co 1 coroutine fail, nhung viewModelScope.launch(SupervisorJob()) van cancel du co SupervisorJob
+so sanh voi 5_exception_propagation.kt thi thay co ve chua hieu lam SupervisorJob, tai sao co try catch roi ma fail coroutine van bi propagate len top level coroutine
