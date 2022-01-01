@@ -3,10 +3,7 @@ package com.picoder.sample.coroutinespractice.usecases.coroutines.usecase3
 import androidx.lifecycle.viewModelScope
 import com.picoder.sample.coroutinespractice.base.BaseViewModel
 import com.picoder.sample.coroutinespractice.mock.MockApi
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 class PerformNetworkRequestsConcurrentlyViewModel(
@@ -45,6 +42,39 @@ class PerformNetworkRequestsConcurrentlyViewModel(
                 uiState.value = UiState.Success(versionFeatures)
             } catch (exception: Exception) {
                 uiState.value = UiState.Error("Network Request failed")
+            }
+        }
+    }
+
+    fun performNetworkRequestsConcurrentlyEvenOneFailed() {
+        uiState.value = UiState.Loading
+        val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+            uiState.value = UiState.Error("Network Request failed!")
+        }
+        viewModelScope.launch(exceptionHandler) {
+
+            // with supervisorScope if child coroutine fail, it will not propagate cancellation to sibling coroutines
+            // without supervisorScope it will cancel sibling coroutine if there is failed coroutine even try catch
+            // try catch only help code will continue run but it will propagate error to top level coroutine
+            // if not try catch it will stop and propagate error to top level coroutine immediately
+            // why launch (SupervisorJob()) {} !=  supervisorScope{}
+            supervisorScope {
+                val oreoFeaturesDeferred = async { mockApi.getAndroidVersionFeatures(27) }
+                val pieFeaturesDeferred = async { mockApi.getAndroidVersionFeatures(28) }
+                val android10FeaturesDeferred = async { mockApi.getAndroidVersionFeatures(29) }
+
+                val versionFeatures = listOf(
+                    oreoFeaturesDeferred,
+                    pieFeaturesDeferred,
+                    android10FeaturesDeferred
+                ).mapNotNull {
+                    try {
+                        it.await()
+                    } catch (e: Exception) {
+                        null
+                    }
+                }
+                uiState.value = UiState.Success(versionFeatures)
             }
         }
     }
