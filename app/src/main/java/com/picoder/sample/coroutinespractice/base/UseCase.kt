@@ -4,10 +4,23 @@ import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import com.picoder.sample.coroutinespractice.usecases.channels.usecase1.ChannelUseCase1Activity
 import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase1.PerformSingleNetworkRequestActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase10.CalculationInBackgroundActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase11.CooperativeCancellationActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase12.CalculationInSeveralCoroutinesActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase13.ExceptionHandlingActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase14.ContinueCoroutineWhenUserLeavesScreenActivity
 import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase2.Perform2SequentialNetworkRequestsActivity
 import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase2.callbacks.SequentialNetworkRequestsCallbacksActivity
 import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase2.rx.SequentialNetworkRequestsRxActivity
 import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase3.PerformNetworkRequestsConcurrentlyActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase4.VariableAmountOfNetworkRequestsActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase5.NetworkRequestWithTimeoutActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase6.RetryNetworkRequestActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase7.TimeoutAndRetryActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase7.callbacks.TimeoutAndRetryCallbackActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase7.rx.TimeoutAndRetryRxActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase8.RoomAndCoroutinesActivity
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase9.DebuggingCoroutinesActivity
 import com.picoder.sample.coroutinespractice.usecases.flow.usecase1.FlowUseCase1Activity
 import kotlinx.android.parcel.Parcelize
 
@@ -66,7 +79,7 @@ private val coroutinesUseCases =
                 useCase3Description,
                 PerformNetworkRequestsConcurrentlyActivity::class.java
             ),
-            /*UseCase(
+            UseCase(
                 useCase4Description,
                 VariableAmountOfNetworkRequestsActivity::class.java
             ),
@@ -116,19 +129,7 @@ private val coroutinesUseCases =
             UseCase(
                 useCase14Description,
                 ContinueCoroutineWhenUserLeavesScreenActivity::class.java
-            ),
-            UseCase(
-                useCase15Description,
-                WorkManagerActivity::class.java
-            ),
-            UseCase(
-                useCase16Description,
-                PerformanceAnalysisActivity::class.java
-            ),
-            UseCase(
-                useCase17Description,
-                PerformCalculationOnMainThreadActivity::class.java
-            )*/
+            )
         )
     )
 

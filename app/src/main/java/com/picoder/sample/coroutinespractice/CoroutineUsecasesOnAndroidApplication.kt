@@ -2,6 +2,8 @@ package com.picoder.sample.coroutinespractice
 
 import android.app.Application
 import androidx.viewbinding.BuildConfig
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase14.AndroidVersionDatabase
+import com.picoder.sample.coroutinespractice.usecases.coroutines.usecase14.AndroidVersionRepository
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -11,6 +13,13 @@ class CoroutineUsecasesOnAndroidApplication : Application() {
 
     private val applicationScope = CoroutineScope(SupervisorJob())
 
+    val androidVersionRepository by lazy {
+        val database = AndroidVersionDatabase.getInstance(applicationContext).androidVersionDao()
+        AndroidVersionRepository(
+            database,
+            applicationScope
+        )
+    }
 
     override fun onCreate() {
         super.onCreate()
