@@ -1,3 +1,4 @@
+This is repo where i practice Coroutines
 # Coroutines Characteristics
 - Coroutine must have Coroutine Scope to run, such as GlobalScope, ViewModelScope
 - Coroutine started in the same scope from a hierarchy
